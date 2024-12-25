@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit-ml-app
+spec:
+  replicas: 2  # Number of pods to run
+  selector:
+    matchLabels:
+      app: streamlit-ml-app
+  template:
+    metadata:
+      labels:
+        app: streamlit-ml-app
+    spec:
+      containers:
+      - name: streamlit-ml-app
+        image: bnbazz/streamlit-ml-app:latest  # Replace with your image
+        ports:
+        - containerPort: 8501
+        resources:  # Optional: Add resource limits
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
